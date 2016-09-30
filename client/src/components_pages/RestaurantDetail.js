@@ -4,30 +4,28 @@ import React from 'react';
 // Components
 import FloatingButton from "../components_utils/FloatingButton";
 import Navbar from "../components_utils/Navbar"
-import {Link} from "react-router";
-
+import {Link, browserHistory} from "react-router";
+import Star from "../components_utils/Star";
 
 class RestaurantDetail extends React.Component {
-    constructor(R) {
-        super(R);
+    constructor(props) {
+        super(props);
         this.displayName = 'RestaurantDetail';
-        this.state={addReview: false}
     }
     addReview(e){
     	e.preventDefault();
-    	console.log("hello")
-    	this.setState({addReview: true})
+    	browserHistory.push("/addReview/" + this.props.params.restaurantId)
     }
+	
     render() {
         return(
         	<div>
-        		<Navbar />
-				
-
-        		<mainMobile className="container" >
-	        		<FloatingButton 
-	        			style={{display: this.state.addReview ? "none" : "inherit"}}
-	        			onClick={this.addReview.bind(this)}/>
+        		<mainMobile className="container mobile" >
+	        		<Navbar showBackButton={true}
+	        				RBSymbol={<i className="glyphicon glyphicon-edit"></i>}
+	        				RBAria={"add Review"}
+	        		        RBAction={this.addReview.bind(this) }/>
+	        		
         			<div style={{position: "relative", 
         			     maxWidth: 400, border: "1px solid black",
         			     borderBottomRightRadius: 10,borderBottomLeftRadius: 10,
@@ -65,11 +63,11 @@ const RestaurantDetail_M = (props) => {
 		  </div>
 
 		  <hr style={{border: "1px solid rgba(0,0,0,0.2"}} />
-		{ R.comments.sort((a,b) => {
-			  return a.commentedAt - b.commentedAt
-		  }).slice(0,2).map(u =>  <ReviewList key={u.id} user={u}/>)
-		 
-		}
+		  <label aria-label="latestReviews" style={{marginLeft: 10}}>latest Reviews: </label>
+		  
+		{ R.comments.sort((a,b) => b.commentedAt - a.commentedAt)
+			        .slice(0,2)
+			        .map(u =>  <ReviewList key={u.id} user={u}/>)}
 
 		  <Link to={"/review_mobile/"+R.name} className="btn btn-lg btn-block btn-primary">
 		  	Read All Reviews >
@@ -80,17 +78,6 @@ const RestaurantDetail_M = (props) => {
 
 export default RestaurantDetail;
 
-const Star = (props) => {
-	const number = Number(props.ratings).toFixed(1)
-	return (
-		<label className={"glyphicon glyphicon-star no-hover " + props.className }
-		       aria-label="ratings"
-		       style={props.style}
-		       >
-		       <span className="ratingNumber_VD">{number}</span>
-		</label>
-	)
-}
 
 const ReviewList = (props) => {
 	const user = props.user;

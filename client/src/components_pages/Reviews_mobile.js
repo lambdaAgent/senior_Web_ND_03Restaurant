@@ -1,6 +1,8 @@
+//MOBILE ONLY
+
 /* Library */
 import React, { Component } from 'react';
-import {Link} from "react-router";
+import {Link, browserHistory} from "react-router";
 
 /* Components_utils */
 import Navbar from "../components_utils/Navbar";
@@ -9,18 +11,26 @@ import Review from "../components_utils/Review";
 
 
 class App extends Component {
-
+  
+  addReview(e){
+        e.preventDefault();
+        browserHistory.push("/addReview/" + this.props.params.restaurantId)
+    }
   render() {
     const props= this.props;
-    const reviewers = reviews.map(r => <Review key={r.id} review={r}/> );
+    const reviewers = reviews.sort((a,b) => b.commentedAt - a.commentedAt)
+                             .map(r => <Review key={r.id} review={r}/> );
     return (
       <div className="container">
+        <Navbar showBackButton={true}
+                RBSymbol={<i className="glyphicon glyphicon-edit"></i>}
+                RBAria={"add Review"}
+                RBAction={this.addReview.bind(this) }/>
 
-        <Navbar />
         <span className="desktop">this page will only show at mobile screen</span>
-        <main className="reviews-mobile" style={{margin: "0 auto"}}>
-          <Backbutton style={{display: "block"}} />
-          <ul className="reviewList" role="reviewlist">
+
+        <main className="mobile reviews-mobile" style={{margin: "0 auto"}}>
+          <ul className="reviewList" role="reviewlist" style={{marginTop: 42}}>
             {reviewers}
           </ul>
         </main>

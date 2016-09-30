@@ -11,12 +11,12 @@
 	body{
 		margin-top: 11px;
 	}
+	.login{
+		margin-top: 59px;
+	}
 
 }
 @media (min-width: 720px){
-	.reviews-mobile{
-		display: none;
-	}
 	.mobile{
 		display: none;
 	}
@@ -31,6 +31,8 @@
 
 .reviewList{
 	border: 1px solid rgba(0,0,0, 0.5);
+	border-bottom: none;
+	border-top: none;
 	padding: 10px 0;
 	padding-left: 30px;
 }

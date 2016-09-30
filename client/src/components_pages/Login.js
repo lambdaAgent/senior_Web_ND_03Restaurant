@@ -76,10 +76,12 @@ class Login extends React.Component {
 
 
     render() {
+        const query = window.location.href.split("?")[1];
+        const showBackButton = query === "back=true"
         return(
             <div>
-                <Navbar />
-                <div className="container">
+                <Navbar showBackButton={showBackButton} />
+                <div className="container login">
                 	<form id="loginForm" name="registration" method="POST" action="/" 
                         style={{maxWidth: "400px", margin: "0 auto"}}>
                   <div className="">
@@ -125,5 +127,7 @@ class Login extends React.Component {
         );
     }
 }
+
+
 
 export default Login;

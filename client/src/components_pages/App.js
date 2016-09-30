@@ -12,7 +12,7 @@ class App extends Component {
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.        <a href="/review_mobile.html"></a>
-          <Link to="/restaurant/Considine">app2</Link>
+          <Link to="/restaurant/1234">app2</Link>
 
         </p>
 
