@@ -39,6 +39,9 @@ class FlashMessage extends React.Component {
 			this.props.closeClick();
 		}
 	}
+	componentDidMount() {
+	 	console.log("flash message mounted")     
+	}
 	componentWillUpdate(nextProps, nextState) {
 	 if(nextState.show === true){
 	 		document.getElementById("flashMessage").focus();

@@ -11,6 +11,7 @@ import Signup from "../components_utils/SignUpButton";
 import Navbar from "../components_utils/Navbar";
 import {Link, browserHistory} from "react-router";
 import {FlashMessage, FlashDB} from "../components_utils/FlashMessage";
+import StarRating from "../components_utils/StarRating"
 
 
 
@@ -25,7 +26,7 @@ class AddReviewForm extends React.Component {
 		e.preventDefault();
 		var reviewText = $("#review")[0].value;
 		if(reviewText === ""){
-			$("#help-review").show()
+			return $("#help-review").show()
 		} else {
 			$("#help-review").hide()
 		}
@@ -35,7 +36,11 @@ class AddReviewForm extends React.Component {
 		}
 
 		var reviewText = $("#review")[0].value;
-		DB.addReview(this.props.params.restaurantId, reviewText)
+		var user = SimpleLogin.get();
+		user.coments = reviewText;
+		user.ratings = 0;
+		user.commentedAt = Date.parse(new Date());
+		DB.addReview(this.props.params.restaurantId, user)
 		browserHistory.goBack();
 	}
 	signupWithBackHistory(){
@@ -56,10 +61,11 @@ class AddReviewForm extends React.Component {
 		    				RBAria={"signup"}
 		    		        RBAction={ this.signupWithBackHistory }/>
 					<form onSubmit="" name="addReview">
-						<p><label htmlFor="review" aria-label="review">Review: </label></p>
+						<p><label htmlFor="review" aria-label="review">Ratings: </label></p>
+						<StarRating />
 						<textarea id="review" name="review" 
 						          style={{width: "100%"}} 
-						          rows={8} 
+						          rows={8} aria-label="add comments"
 						          autoFocus
 						          placeholder="&nbsp; add Review"></textarea>
 						<span tabIndex="0"

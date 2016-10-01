@@ -1,5 +1,10 @@
-.no-hover:hover{
-
+.starRating_sys{
+    cursor: pointer;
+    font-size: 50px;
+    
+}
+.red{
+    color: red;
 }
 .card_image_overlay_VD{
     width: 100%;

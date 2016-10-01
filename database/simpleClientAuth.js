@@ -15,6 +15,9 @@ var Login = {
 		return this.getFromDatabase();
 	},
 	set(user){
+		console.log(user)
+		user.image="https://robohash.org/hicminimaquia.bmp?size=50x50&set=set1";
+		user.id="localUser02-157-4932"
 		window.localStorage.setItem("login", JSON.stringify(user))
 	},	
 	clear(){

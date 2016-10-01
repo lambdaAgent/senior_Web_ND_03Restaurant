@@ -152,7 +152,13 @@ function getValueOf(arr){
   arr.map(field => {
      var value = document.getElementById(field).value
      if (!value) return result = undefined;
-     result[field] = value;
+     if (field === "firstname"){
+        result["first_name"] = value
+     } else if(field === "lastname"){
+        result["last_name"] = value
+     } else {
+        result[field] = value;
+    }
   });
   return  Object.keys(result).length > 0 ? result : undefined;
 }

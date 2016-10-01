@@ -4,6 +4,8 @@ module.exports = [{
 	"weekend": "9:40 AM",
 	"weekday": "9:45 AM",
 	"address": "546 Calypso Crossing",
+	"image": "/images/Considine_Group.jpeg",
+	"category": "Restaurant",
 	"ratings": "2.73",
 	"coments": null,
 	"comments_amount": 15,

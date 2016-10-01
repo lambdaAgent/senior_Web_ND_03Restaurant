@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router";
 import Navbar from "../components_utils/Navbar";
+import StarRating from "../components_utils/StarRating";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
 
         </p>
 
+        <StarRating />
       </div>
     );
   }
