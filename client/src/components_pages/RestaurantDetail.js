@@ -6,6 +6,7 @@ import FloatingButton from "../components_utils/FloatingButton";
 import Navbar from "../components_utils/Navbar"
 import {Link, browserHistory} from "react-router";
 import Star from "../components_utils/Star";
+import {FlashMessage} from "../components_utils/FlashMessage";
 
 class RestaurantDetail extends React.Component {
     constructor(props) {
@@ -20,6 +21,23 @@ class RestaurantDetail extends React.Component {
     render() {
         return(
         	<div>
+        	    {/*desktop only*/}
+        		<mainDesktop className="desktop">
+        			<Navbar />
+	        		<h1>TODO: make desktop version</h1>
+	        		<ol>
+	        			<li>show individual restaurant</li>
+	        			<li>add reviews form, dropdown</li>
+	        			<li>reviews list</li>
+	        			<li>tabbable: 
+	        			     <ul>
+	        			     	<li>add review only</li>
+	        			     </ul>
+	        			</li>
+	        		</ol>
+        		</mainDesktop>
+
+        	    {/*mobile only*/}
         		<mainMobile className="container mobile" >
 	        		<Navbar showBackButton={true}
 	        				RBSymbol={<i className="glyphicon glyphicon-edit"></i>}
@@ -27,20 +45,32 @@ class RestaurantDetail extends React.Component {
 	        		        RBAction={this.addReview.bind(this) }/>
 	        		
         			<div style={{position: "relative", 
-        			     maxWidth: 400, border: "1px solid black",
+        			     maxWidth: 480, border: "1px solid black",
         			     borderBottomRightRadius: 10,borderBottomLeftRadius: 10,
-        			     margin: "0 auto"
-        			 }} >
+        			     margin: "0 auto"}}
+        			     >
 	        			<RestaurantDetail_M 
 	        				restaurant={restaurant}
 	        			/>
         			</div>
         		</mainMobile>
+
+        		<FlashMessage />
         	</div>
         )
     }
 }
 
+export default RestaurantDetail;
+
+
+// -------------
+//    DESKTOP
+// -------------
+
+// -------------
+//    MOBILE
+// -------------
 const RestaurantDetail_M = (props) => {
 	const R = props.restaurant;
 	return(
@@ -69,15 +99,12 @@ const RestaurantDetail_M = (props) => {
 			        .slice(0,2)
 			        .map(u =>  <ReviewList key={u.id} user={u}/>)}
 
-		  <Link to={"/review_mobile/"+R.name} className="btn btn-lg btn-block btn-primary">
+		  <Link to={"/review_mobile/"+R.id} className="btn btn-lg btn-block btn-primary">
 		  	Read All Reviews >
 		  </Link>
 		</mobile>
 	)
 }
-
-export default RestaurantDetail;
-
 
 const ReviewList = (props) => {
 	const user = props.user;

@@ -11,7 +11,7 @@ import NoMatch from "./components_pages/NoMatch.js";
 
 import './index.css';
 import "./style/starRating.css";
-
+import "./style/animation.css";
 import { Router, Route, browserHistory } from 'react-router'
 
 ReactDOM.render(

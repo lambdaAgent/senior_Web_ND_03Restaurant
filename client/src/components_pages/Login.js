@@ -1,11 +1,19 @@
 import React from 'react';
+import { Validation } from "../helper/helper.js";
+import SimpleLogin  from "../../../database/simpleClientAuth";
+const $ = require("jquery");
+import {FlashDB, FlashMessage} from "../components_utils/FlashMessage";
+
+//Components
+import { browserHistory } from "react-router";
 import FormGroup from "../components_utils/FormGroup";
 import Navbar from "../components_utils/Navbar";
-import { Validation } from "../helper/helper.js";
-import { browserHistory } from "react-router";
-const $ = require("jquery");
+
 
 class Login extends React.Component {
+    componentWillUnmount() {
+      SimpleLogin.clearFromAddReviewToSignup();     
+    }
     validateEmpty(e){
       //trigger validation for required empty fields
       Validation.validateEmpty($, e);
@@ -30,8 +38,12 @@ class Login extends React.Component {
 
       // if form is valid, submit 
       if(form[0].checkValidity()){
-        //return document.getElementById("loginForm").submit();
-        return browserHistory.push("/")
+        const loginUser = getValueOf(["firstname", "lastname", "email"])
+        if(!loginUser) {
+          return FlashDB.addAlert("user cannot be found")
+        }
+        SimpleLogin.set(loginUser);
+        return browserHistory.goBack();
       }
     }
 
@@ -76,11 +88,11 @@ class Login extends React.Component {
 
 
     render() {
+      console.log("browserHistory", browserHistory)
         const query = window.location.href.split("?")[1];
-        const showBackButton = query === "back=true"
         return(
             <div>
-                <Navbar showBackButton={showBackButton} />
+                <Navbar showBackButton={SimpleLogin.showBackButton()}/>
                 <div className="container login">
                 	<form id="loginForm" name="registration" method="POST" action="/" 
                         style={{maxWidth: "400px", margin: "0 auto"}}>
@@ -123,6 +135,8 @@ class Login extends React.Component {
                   </div>
                 	</form>
                 </div>
+
+                <FlashMessage />
             </div>
         );
     }
@@ -131,3 +145,14 @@ class Login extends React.Component {
 
 
 export default Login;
+
+
+function getValueOf(arr){
+  var result = {};
+  arr.map(field => {
+     var value = document.getElementById(field).value
+     if (!value) return result = undefined;
+     result[field] = value;
+  });
+  return  Object.keys(result).length > 0 ? result : undefined;
+}

@@ -21,20 +21,22 @@ class App extends Component {
     const reviewers = reviews.sort((a,b) => b.commentedAt - a.commentedAt)
                              .map(r => <Review key={r.id} review={r}/> );
     return (
-      <div className="container">
-        <Navbar showBackButton={true}
+      <div className="">
+        <Navbar />
+        <h1 className="desktop">this page will only show at mobile screen</h1>
+
+
+        <main className="mobile reviews-mobile" style={{margin: "0 auto"}}>
+         <Navbar showBackButton={true}
                 RBSymbol={<i className="glyphicon glyphicon-edit"></i>}
                 RBAria={"add Review"}
                 RBAction={this.addReview.bind(this) }/>
-
-        <span className="desktop">this page will only show at mobile screen</span>
-
-        <main className="mobile reviews-mobile" style={{margin: "0 auto"}}>
           <ul className="reviewList" role="reviewlist" style={{marginTop: 42}}>
             {reviewers}
           </ul>
         </main>
 
+        
       </div>
     );
   }

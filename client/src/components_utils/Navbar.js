@@ -1,30 +1,21 @@
 import React from 'react';
-import { Link , browserHistory, Router} from 'react-router';
 const $ = require("jquery");
+import SimpleLogin from "../../../database/simpleClientAuth";
+
+import { Link , browserHistory} from 'react-router';
+import Signup from "./SignUpButton";
 
 var currentUrl=""
 class Navbar extends React.Component {
     constructor(props) {
         super(props);
-        this.updateDimensions = this.updateDimensions.bind(this)
-        this.state = {width: 0, url: ""}
-    }
-    updateDimensions(){
-    }
-    componentDidMount() {
-        window.addEventListener("resize", this.updateDimensions.bind(this));  
-        this.updateDimensions.call(this);
-        window.scroll(0,0)
-    }
-    componentDidUpdate(prevProps, prevState) {
-      console.log("didupdate")     
+        this.state = {width: 0, url: "", login: SimpleLogin.init() };
     }
     render() {
+        const self = this; //don't Delete this
         const showBackButton = this.props.showBackButton;
         const brand = "Restaurant Finder";
         const aria_home = 'link to home';
-        const aria_signup = "link to signup";
-        const self = this;
         return(
         	<nav className="navbar navbar-inverse navbar-fixed-top">
 				{ (!showBackButton) /*cannot use if, use ternary instead*/
@@ -40,7 +31,7 @@ class Navbar extends React.Component {
                                           {brand}
                                     </Link>
                                     <ul className="nav navbar-nav" style={{float: "right"}}>
-                                        <li><Link to="/signup" aria-label={aria_signup}>Signup</Link></li>
+                                        <li><Signup /> </li>
                                     </ul>
             					</div>
                             </div>
@@ -55,7 +46,7 @@ class Navbar extends React.Component {
                                 </div> 
             					<div className="navbar-collapes" >
             						<ul className="nav navbar-nav navbar-right">
-            							<li><Link to="/signup" aria-label={aria_signup}>Signup</Link></li>
+            							<li><Signup /> </li>
             						</ul>
             					</div>
                             </div>
@@ -73,15 +64,26 @@ class Navbar extends React.Component {
     }
 }
 
+
+export default Navbar;
+
+
+
+
+
+
 const TwoFunctionHeader = (props) => {
+  console.log(props.RBSymbol)
     return(
         <div className="navbar-header" style={{width: "100%"}}>
                 <Link className="navbar-brand" 
                   style={{cursor: "pointer"}}
                   role="back to previous page"
+                  tabIndex={0}
                   onClick={ browserHistory.goBack }> {"< Back"}</Link>
                 <ul className="navbar-brand" style={{float: "right", paddingTop:12, cursor:"pointer"}}>
                     <span aria-label={props.RBAria}
+                          tabIndex={0}
                           onClick={props.RBAction}
                           style={Object.assign({}, {fontSize: "25px"}, props.RBStyle)}
                           >{props.RBSymbol}</span>
@@ -103,10 +105,12 @@ const Hamburger = (props) => (
 
 
 var CollapsedMenu = (props) => (
-	<div className="collapse navbar-collapse" id="Hamburger-Menu" 
+  <div className="collapse navbar-collapse" id="Hamburger-Menu" 
          style={Object.assign({}, {marginTop: 0})}>
       <ul className="nav navbar-nav">
-        <li id="Signup-hamburger"><Link to="/signup" aria-label={props.aria_signup}>Signup</Link></li>
+        <li id="Signup-hamburger">
+          <Signup />
+        </li>
       </ul>
     </div>    
 )
@@ -114,5 +118,3 @@ var CollapsedMenu = (props) => (
 CollapsedMenu.props = {
     aria_signup: React.PropTypes.string.isRequired  
 }
-
-export default Navbar;

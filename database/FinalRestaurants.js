@@ -1,4 +1,4 @@
-[{
+module.exports = [{
 	"id": "restaurant-79-221-6099",
 	"name": "Considine Group",
 	"weekend": "9:40 AM",

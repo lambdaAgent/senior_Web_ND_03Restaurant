@@ -1,4 +1,12 @@
-
+.overlay_VD{
+	background-color: none; 
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: 10001;
+}
 
 @media (max-width: 720px){
 	.desktop{
@@ -6,7 +14,7 @@
 	}
 
 	.reviews-mobile{
-		max-width: 700px;
+		max-width: 480px;
 	}
 	body{
 		margin-top: 11px;
