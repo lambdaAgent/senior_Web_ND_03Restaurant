@@ -156,7 +156,7 @@ const RestaurantDetail_M = (props) => {
 			  <div className="card-block" style={{marginTop: 10, paddingLeft: 10}}>
 			  	<Star className="starRating_VD"
 			  	      ratings={R.ratings} />
-	           	<span className="label label-danger" style={{fontSize:13}}>{R.category}</span>
+	           	<span className="label label-danger" style={{fontSize:13}} aria-label="category">{R.category}</span>
 			  	<p style={{marginBottom:0}}><label aria-label="open">Open:</label></p>
 			    <p className="card-text" aria-label="weekday" style={{marginBottom:0}}>weekday: {R.weekday}</p>
 			    <p className="card-text" aria-label="weekend" style={{marginBottom:0}}>weekend: {R.weekend}</p>
@@ -207,9 +207,9 @@ const AddReviewForm = props => {
 			          autoFocus
 			          placeholder="add comments"></textarea>
 			<span tabIndex="0"
-				style={submitButtonStyle}
+				style={submitButtonStyle} role="submit comment and ratings"
 				onClick={props.submit_if_login }>submit</span>
-			<span id={"help-review"} className="help-block" 
+			<span id={"help-review"} className="help-block"  role="alert"
 	             style={{color:"red", visibility: "hidden"}}>please fill the review
 	        </span>
 			

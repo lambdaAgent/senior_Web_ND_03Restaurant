@@ -1,8 +1,8 @@
 module.exports = [{
 	"id": "restaurant-79-221-6099",
 	"name": "Considine Group",
-	"weekend": "9:40 AM",
-	"weekday": "9:45 AM",
+	"weekend": "9:40 AM - 11:40 PM",
+	"weekday": "9:45 AM - 9:00 PM",
 	"address": "546 Calypso Crossing",
 	"image": "/images/Considine_Group.jpeg",
 	"category": "Restaurant",
