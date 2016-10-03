@@ -17,7 +17,6 @@ class App extends Component {
     this.setState({restaurants: filteredRestaurants})
   }
   _cancelFilter(e){
-    //cancel sort can also use this
     this.setState({restaurants: SimpleDB.init()._restaurants})
   }
  
@@ -30,9 +29,10 @@ class App extends Component {
     this.setState({restaurants: filteredRestaurants})
   }
   _sortBy(e){
-    var order = "D";
+    var order = "A";
     var field = e.target.value
     var restaurants = sortBy(field, order, this.state.restaurants);
+    if(e.target.value === "none") restaurants = SimpleDB.init()._restaurants;
     this.setState({restaurants: restaurants.length > 0 ? restaurants : this.state.restaurants })
   }
   _hamburgerClick(e){
@@ -42,6 +42,7 @@ class App extends Component {
   render() {
     const self = this;
     const Restaurants__loop = this.state.restaurants.map(r =>  <RestaurantList key={r.id} restaurant={r}/> )
+
     return (
       <div className="container" style={{paddingLeft:0}}>
 
@@ -57,23 +58,10 @@ class App extends Component {
             />
             <i className="glyphicon glyphicon-search" style={{top:3, left:5, position:"absolute", fontSize:"20px"}}></i>
           </div>
-          <div className="row">
-            <label htmlFor="sort">sort By:</label>
-            <select name="sort" id="sort" defaultValue="name" onChange={this._sortBy.bind(this)}>
-              <option value="name">name</option> 
-              <option value="ratings">ratings</option> 
-            </select>
-            <label htmlFor="category">Category: </label>
-            <select name="category" id="category" defaultValue="none" onChange={this._filterByCategory.bind(this)}>
-              <option value="none">None</option> 
-              <option value="Restaurant">Restaurant</option> 
-              <option value="Hawker">Hawker</option> 
-              <option value="Chinese-Food">Chinese-Food</option> 
-              <option value="Truck-Food">Truck-Food</option> 
-              <option value="Fast-Food">Fast-Food</option> 
-
-            </select>
-          </div>
+          <SortAndFilter
+             sortBy={this._sortBy.bind(this)}
+             filterBy={this._filterByCategory.bind(this)}
+             />
           <br />
           <ul className="list-group">
             {Restaurants__loop}
@@ -88,8 +76,42 @@ class App extends Component {
                    RBSymbol={<i className="glyphicon glyphicon-menu-hamburger" onClick={self._hamburgerClick.bind(self)}></i>}
                    RBAria={"signup"}
                     RBAction={ this.signupWithBackHistory }/>
-          <dropdown>
-
+          
+          <dropdown style={{display: this.state.showHamburger ? "inherit" : "none", width: "110%",
+                            position: "fixed", top:50, zIndex:90}}
+                            className="navbar-inverse navbar-nav">
+              <div className="navbar-collapse" id="Hamburger-Menu"  role="dropdownMenu" 
+                   aria-label="dropdownMenu"
+                   style={Object.assign({}, {marginTop: 0})}>
+                <ul className="nav navbar-nav container" style={{listStyleType: "none", color: "White", fontSize: 20}}>
+                  <li style={{marginBottom: 10}}><Link to="/signup">Signup</Link></li>
+                  <li > 
+                      <label htmlFor="sort" style={{marginLeft: 15, fontWeight: "normal"}}>sort By:</label>
+                      <select name="sort" id="sort" 
+                              defaultValue="none" 
+                              style={{marginLeft: 38}}
+                              onChange={this._sortBy.bind(this)}>
+                        <option value="none">none</option> 
+                        <option value="name">name</option> 
+                        <option value="ratings">ratings</option> 
+                      </select>                      
+                  </li>
+                  <li>
+                     <label htmlFor="category" style={{marginLeft: 15, fontWeight: "normal"}}>Category: </label>
+                      <select name="category" id="category" 
+                              defaultValue="none" 
+                              style={{marginLeft: 20}}
+                              onChange={this._filterByCategory.bind(this)}>
+                        <option value="none">None</option> 
+                        <option value="Restaurant">Restaurant</option> 
+                        <option value="Hawker">Hawker</option> 
+                        <option value="Chinese-Food">Chinese-Food</option> 
+                        <option value="Truck-Food">Truck-Food</option> 
+                        <option value="Fast-Food">Fast-Food</option> 
+                      </select>
+                  </li>
+                </ul>
+              </div>    
           </dropdown>
 
           <div className="row" style={{marginTop:70, position:"relative"}}>
@@ -108,7 +130,29 @@ class App extends Component {
 export default App;
 
 
+const SortAndFilter = (props) => {
+  return(
+      <div className="row" style={{marginLeft: 5, marginTop: 10}}>
+          <label htmlFor="sort">sort By:</label>
+          <select name="sort" id="sort" defaultValue="none" onChange={props.sortBy} aria-labelledBy="sort">
+            <option value="none">none</option> 
+            <option value="name">name</option> 
+            <option value="ratings">ratings</option> 
+          </select>
+          &nbsp;
+          <label htmlFor="category">Category: </label>
+          <select name="category" id="category" defaultValue="none" onChange={props.filterBy} aria-labelledBy="category">
+            <option value="none">None</option> 
+            <option value="Restaurant">Restaurant</option> 
+            <option value="Hawker">Hawker</option> 
+            <option value="Chinese-Food">Chinese-Food</option> 
+            <option value="Truck-Food">Truck-Food</option> 
+            <option value="Fast-Food">Fast-Food</option> 
 
+          </select>
+      </div>
+  )
+}
 
 
 function filterByAlphabets(name, restaurants){

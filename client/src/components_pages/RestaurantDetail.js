@@ -12,7 +12,7 @@ import {Link, browserHistory} from "react-router";
 import Star from "../components_utils/Star";
 import Review from "../components_utils/Review";
 import StarRating from "../components_utils/StarRating"
-
+import Backbutton from "../components_utils/Backbutton"
 
 class RestaurantDetail extends React.Component {
     constructor(props) {
@@ -68,6 +68,7 @@ class RestaurantDetail extends React.Component {
         		<mainDesktop className="container desktop">
         			<Navbar />
 	        		<div style={{maxWidth: 800, margin:"0 auto", marginTop:-50}}>
+	        			<Backbutton />
 	        			<RestaurantDetail_D
 	        				submit_if_login={this.submit_if_login}
 	        				restaurant={restaurant}
@@ -204,7 +205,6 @@ const AddReviewForm = props => {
 			<textarea id="review" name="review" 
 			          style={{width: "100%"}} 
 			          rows={8} aria-label="add comments"
-			          autoFocus
 			          placeholder="add comments"></textarea>
 			<span tabIndex="0"
 				style={submitButtonStyle} role="submit comment and ratings"

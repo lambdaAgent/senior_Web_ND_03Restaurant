@@ -1,4 +1,5 @@
 import React from "react";
+import {browserHistory} from "react-router";
 
 import Star from "./Star";
 
@@ -6,9 +7,13 @@ import Star from "./Star";
 const RestaurantList = (props) => {
 	const restaurant = props.restaurant
 	return (
-		<li className="row" role="Restaurant" style={comment_mobile} aria-label="restaurant">
+		<li className="row" role="Restaurant" 
+            style={comment_mobile} 
+            aria-label="restaurant"
+            onClick={() => browserHistory.push("/restaurant/" + restaurant.id)}>
     	   <img src={restaurant.image} 
 		   	    alt={restaurant.name}
+                className="desktop"
 		        style={imageMedia} />
 		<info style={commentPanel} >
             <div className="" >

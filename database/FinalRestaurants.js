@@ -147,13 +147,14 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-71-596-2437",
-	"name": "Zemlak Inc",
+	"name": "Zemlak",
 	"category": "Hawker",
 	"weekend": "9:49 AM",
 	"weekday": "9:48 AM",
 	"address": "388 Vahlen Crossing",
 	"ratings": "2.46",
 	"coments": null,
+	"image": "/images/Zemlak.jpeg",
 	"comments_amount": 13,
 	"comments": [{
 		"id": "63-314-3710",
@@ -283,6 +284,7 @@ module.exports = [{
 	"ratings": "2.10",
 	"coments": null,
 	"comments_amount": 20,
+	"image":"/images/Paucek_Schmidt_and_O'Keefe.jpeg",
 	"comments": [{
 		"id": "20-179-8856",
 		"first_name": "Mildred",
@@ -466,7 +468,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-93-722-1309",
-	"name": "Spinka and Sons",
+	"name": "Spin Tao ",
 	"category": "Chinese-Food",
 	"weekend": "7:59 AM",
 	"weekday": "8:45 AM",
@@ -474,6 +476,7 @@ module.exports = [{
 	"ratings": "2.59",
 	"coments": null,
 	"comments_amount": 17,
+	"image":"/images/Spin.jpeg",
 	"comments": [{
 		"id": "15-817-7103",
 		"first_name": "Kathleen",
@@ -638,6 +641,7 @@ module.exports = [{
 	"ratings": "3.67",
 	"coments": null,
 	"comments_amount": 12,
+	"image":"/images/Murazik.jpeg",
 	"comments": [{
 		"id": "53-152-5671",
 		"first_name": "Brandon",
@@ -968,6 +972,7 @@ module.exports = [{
 	"ratings": "2.85",
 	"coments": null,
 	"comments_amount": 20,
+	"image":"/images/Anderson.jpeg",
 	"comments": [{
 		"id": "56-208-9905",
 		"first_name": "Ann",
@@ -1322,6 +1327,8 @@ module.exports = [{
 	"ratings": "2.65",
 	"coments": null,
 	"comments_amount": 20,
+	"category":"Restaurant",
+	"image":"/images/Upton_Kub_and_Beahan.jpg",
 	"comments": [{
 		"id": "98-604-1985",
 		"first_name": "Phyllis",
@@ -1513,6 +1520,7 @@ module.exports = [{
 	"ratings": "2.92",
 	"coments": null,
 	"comments_amount": 13,
+	"image":"/images/Rice_LLC.jpg",
 	"comments": [{
 		"id": "41-953-1189",
 		"first_name": "Beverly",
@@ -1634,12 +1642,14 @@ module.exports = [{
 }, {
 	"id": "restaurant-71-855-3029",
 	"name": "Labadie, Corkery and Hickle",
+	"category":"Restaurant",
 	"weekend": "8:00 AM",
 	"weekday": "10:00 AM",
 	"address": "422 Heffernan Street",
 	"ratings": "2.56",
 	"coments": null,
 	"comments_amount": 18,
+	"image":"/images/Labadie_Corkery_and_Hickle.jpg",
 	"comments": [{
 		"id": "70-903-7480",
 		"first_name": "Ann",
@@ -1969,7 +1979,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-41-699-6003",
-	"name": "Christiansen and Sons",
+	"name": "Christiansen",
 	"category": "Restaurant",
 	"weekend": "9:41 AM",
 	"weekday": "10:21 AM",
@@ -1977,6 +1987,7 @@ module.exports = [{
 	"ratings": "2.79",
 	"coments": null,
 	"comments_amount": 19,
+	"image":"/images/Christiansen.jpg",
 	"comments": [{
 		"id": "32-728-4319",
 		"first_name": "Joe",
@@ -2415,6 +2426,7 @@ module.exports = [{
 	"ratings": "2.60",
 	"coments": null,
 	"comments_amount": 15,
+	"image":"/images/Hegmann_Hansen_Willms.jpg",
 	"comments": [{
 		"id": "43-790-7221",
 		"first_name": "Anne",
@@ -2561,6 +2573,7 @@ module.exports = [{
 	"ratings": "1.90",
 	"coments": null,
 	"comments_amount": 10,
+	"image":"/images/Nienow_Group.jpg",
 	"comments": [{
 		"id": "69-375-4080",
 		"first_name": "Martin",
@@ -3184,7 +3197,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-73-445-0292",
-	"name": "Waters and Sons",
+	"name": "Pecking Duck",
 	"category": "Chinese-Food",
 	"weekend": "9:56 AM",
 	"weekday": "10:27 AM",
@@ -3192,6 +3205,7 @@ module.exports = [{
 	"ratings": "3.00",
 	"coments": null,
 	"comments_amount": 16,
+	"image":"/images/Pecking_Duck.jpeg",
 	"comments": [{
 		"id": "97-011-7975",
 		"first_name": "Alan",
@@ -3339,7 +3353,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-59-984-9336",
-	"name": "Schaden LLC",
+	"name": "Imperial Kitchen",
 	"category": "Chinese-Food",
 	"weekend": "9:52 AM",
 	"weekday": "10:23 AM",
@@ -3347,6 +3361,7 @@ module.exports = [{
 	"ratings": "2.64",
 	"coments": null,
 	"comments_amount": 14,
+	"image":"/images/Imperial_Kitchen.jpeg",
 	"comments": [{
 		"id": "91-397-0032",
 		"first_name": "Stephen",
@@ -3484,6 +3499,7 @@ module.exports = [{
 	"ratings": "2.68",
 	"coments": null,
 	"comments_amount": 19,
+	"image":"/images/Jones-Waters.jpeg",
 	"comments": [{
 		"id": "59-976-8991",
 		"first_name": "Cheryl",
@@ -3666,6 +3682,7 @@ module.exports = [{
 	"ratings": "3.50",
 	"coments": null,
 	"comments_amount": 12,
+	"image":"/images/Rau-Rohan.jpeg",
 	"comments": [{
 		"id": "39-387-6364",
 		"first_name": "Sara",
@@ -3777,13 +3794,15 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-21-241-9521",
-	"name": "Tremblay, Strosin and Hilpert",
+	"name": "Trembay Sirloin",
+	"category":"Restaurant",
 	"weekend": "8:35 AM",
 	"weekday": "9:20 AM",
 	"address": "85098 Del Sol Alley",
 	"ratings": "2.05",
 	"coments": null,
 	"comments_amount": 20,
+	"image":"/images/Trembay_Sirloin.jpeg",
 	"comments": [{
 		"id": "60-068-1678",
 		"first_name": "Robin",
@@ -3967,13 +3986,15 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-98-605-6340",
-	"name": "Bode, Veum and Reinger",
+	"name": "Bode Veum",
+	"category":"Restaurant",
 	"weekend": "8:30 AM",
 	"weekday": "9:14 AM",
 	"address": "95158 Di Loreto Place",
 	"ratings": "2.29",
 	"coments": null,
 	"comments_amount": 14,
+	"images":"/images/Bode_veum.jpeg",
 	"comments": [{
 		"id": "51-038-3903",
 		"first_name": "Pamela",
@@ -4103,7 +4124,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-84-325-7654",
-	"name": "Lynch, Kirlin and Runolfsdottir",
+	"name": "Wu deli",
 	"category": "Chinese-Food",
 	"weekend": "8:26 AM",
 	"weekday": "10:51 AM",
@@ -4111,6 +4132,7 @@ module.exports = [{
 	"ratings": "2.39",
 	"coments": null,
 	"comments_amount": 18,
+	"image":"/images/Wu_deli.jpeg",
 	"comments": [{
 		"id": "45-178-0197",
 		"first_name": "Wayne",
@@ -4284,6 +4306,7 @@ module.exports = [{
 	"ratings": "2.21",
 	"coments": null,
 	"comments_amount": 19,
+	"image":"/images/Auer-Huel.jpeg",
 	"comments": [{
 		"id": "82-741-5251",
 		"first_name": "Douglas",
@@ -4458,7 +4481,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-35-272-8762",
-	"name": "Nitzsche and Sons",
+	"name": "Kebab",
 	"category": "Hawker",
 	"weekend": "7:43 AM",
 	"weekday": "8:05 AM",
@@ -4466,6 +4489,7 @@ module.exports = [{
 	"ratings": "2.15",
 	"coments": null,
 	"comments_amount": 20,
+	"image":"/images/Kebab.jpeg",
 	"comments": [{
 		"id": "52-485-9208",
 		"first_name": "Keith",
@@ -4649,7 +4673,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-73-035-0651",
-	"name": "Stoltenberg Group",
+	"name": "Singapore Hawker",
 	"category": "Hawker",
 	"weekend": "8:11 AM",
 	"weekday": "8:51 AM",
@@ -4657,6 +4681,7 @@ module.exports = [{
 	"ratings": "2.50",
 	"coments": null,
 	"comments_amount": 20,
+	"image":"/images/Singapore_Hawker.jpg",
 	"comments": [{
 		"id": "03-470-0166",
 		"first_name": "Deborah",
@@ -4840,7 +4865,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-97-885-5395",
-	"name": "O'Connell, Brakus and Boehm",
+	"name": "Chan's best",
 	"category": "Chinese-Food",
 	"weekend": "8:52 AM",
 	"weekday": "10:12 AM",
@@ -4848,6 +4873,7 @@ module.exports = [{
 	"ratings": "2.15",
 	"coments": null,
 	"comments_amount": 13,
+	"image":"/images/Chan_best.jpeg",
 	"comments": [{
 		"id": "87-709-8440",
 		"first_name": "Jesse",
@@ -4968,7 +4994,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-93-799-9299",
-	"name": "Haag-Aufderhar",
+	"name": "Balinese Delight",
 	"category": "Hawker",
 	"weekend": "9:44 AM",
 	"weekday": "8:59 AM",
@@ -4976,6 +5002,7 @@ module.exports = [{
 	"ratings": "3.43",
 	"coments": null,
 	"comments_amount": 14,
+	"image":"/images/Balinese_Delight.jpg",
 	"comments": [{
 		"id": "96-783-8850",
 		"first_name": "Gary",
@@ -5113,6 +5140,7 @@ module.exports = [{
 	"ratings": "2.76",
 	"coments": null,
 	"comments_amount": 17,
+	"image":"/images/Lehner-Will.jpeg",
 	"comments": [{
 		"id": "57-469-1679",
 		"first_name": "Jean",
@@ -5269,7 +5297,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-40-970-1408",
-	"name": "Batz-Upton",
+	"name": "Ba Chicken Wing",
 	"category": "Hawker",
 	"weekend": "9:51 AM",
 	"weekday": "8:56 AM",
@@ -5277,6 +5305,7 @@ module.exports = [{
 	"ratings": "2.47",
 	"coments": null,
 	"comments_amount": 19,
+	"image":"/images/Ba_Chicken_Wing.jpeg",
 	"comments": [{
 		"id": "42-683-6732",
 		"first_name": "Bonnie",
@@ -5452,12 +5481,13 @@ module.exports = [{
 }, {
 	"id": "restaurant-47-047-7477",
 	"name": "Heathcote-Mohr",
+	"category":"Restaurant",
 	"weekend": "8:03 AM",
 	"weekday": "10:42 AM",
 	"address": "2909 Granby Avenue",
 	"ratings": "1.64",
-	"coments": null,
 	"comments_amount": 11,
+	"image":"/images/Heathcote-Mohr.jpeg",
 	"comments": [{
 		"id": "78-466-6056",
 		"first_name": "Russell",
@@ -5560,7 +5590,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-83-941-2429",
-	"name": "Homenick, Harber and Hackett",
+	"name": "Xakikata",
 	"category": "Fast-Food",
 	"weekend": "8:27 AM",
 	"weekday": "9:04 AM",
@@ -5568,6 +5598,7 @@ module.exports = [{
 	"ratings": "2.70",
 	"coments": null,
 	"comments_amount": 10,
+	"image":"/images/Xakikata.jpeg",
 	"comments": [{
 		"id": "85-864-1138",
 		"first_name": "Joe",
@@ -5661,7 +5692,7 @@ module.exports = [{
 	}]
 }, {
 	"id": "restaurant-72-490-3223",
-	"name": "Haley-Graham",
+	"name": "Shanghai Lounge",
 	"category": "Chinese-Food",
 	"weekend": "7:59 AM",
 	"weekday": "8:32 AM",
@@ -5669,6 +5700,7 @@ module.exports = [{
 	"ratings": "2.64",
 	"coments": null,
 	"comments_amount": 14,
+	"image":"/images/Shanghai_Lounge.jpeg",
 	"comments": [{
 		"id": "45-590-0378",
 		"first_name": "James",
