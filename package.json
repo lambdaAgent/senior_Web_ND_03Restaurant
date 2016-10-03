@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "installdev": "npm install && cd client && npm install",
+    "install-dev": "npm install && cd client && npm install",
     "start": "cd client && react-scripts start",
     "build": "cd client && react-scripts build",
     "test": "cd client && react-scripts test --env=jsdom",
