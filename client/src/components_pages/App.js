@@ -53,9 +53,14 @@ class App extends Component {
 
     return (
       <div className="container" style={{paddingLeft:0}}>
-
-        <mainDesktop className="desktop">
-          <Navbar />
+      { (this.state.width > 770) ?
+        <Navbar className="desktop"/> :
+        <Navbar showBackButton={true} className="mobile"
+                 RBSymbol={<i className="glyphicon glyphicon-menu-hamburger" onClick={self._hamburgerClick.bind(self)}></i>}
+                 RBAria={"signup"}
+                  RBAction={ this.signupWithBackHistory }/>
+      }
+        <main className="desktop">
           <label htmlFor="searchbar" >Search: </label>
           <div style={{position:"relative"}}>
             <SearchBar 
@@ -74,17 +79,10 @@ class App extends Component {
           <ul className="list-group">
             {Restaurants__loop}
           </ul> 
-        </mainDesktop>
+        </main>  
 
 
-
-
-        <mainMobile className="mobile">
-           <Navbar showBackButton={true}
-                   RBSymbol={<i className="glyphicon glyphicon-menu-hamburger" onClick={self._hamburgerClick.bind(self)}></i>}
-                   RBAria={"signup"}
-                    RBAction={ this.signupWithBackHistory }/>
-          
+        <main className="mobile">          
           <dropdown style={{display: this.state.showHamburger ? "inherit" : "none", width: "110%",
                             position: "fixed", top:50, zIndex:90}}
                             className="navbar-inverse navbar-nav">
@@ -130,7 +128,7 @@ class App extends Component {
               {Restaurants__loop}
             </ul>
           </div> 
-        </mainMobile>
+        </main>
 
       </div>
     );

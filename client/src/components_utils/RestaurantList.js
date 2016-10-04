@@ -19,12 +19,12 @@ const RestaurantList = (props) => {
 		   	    alt={restaurant.name}
                 className="desktop"
 		        style={Object.assign({}, imageMedia, {display: props.width > 720  ? "inline-block" : "none",})} />          
-    		<info style={commentPanel} >
+    		<article style={commentPanel} >
                 <div> 
-        			<h1 style={{marginBottom: "0px", marginTop:0}}
+        			<h2 style={{marginBottom: "0px", marginTop:0}}
         				tabIndex="-1"
         			    > {restaurant.name}
-        			</h1>
+        			</h2>
         			<span className="label" 
                           style={{fontSize:13, 
                             backgroundColor: "black"}} >{restaurant.category}</span>        		
@@ -40,7 +40,7 @@ const RestaurantList = (props) => {
                     <p style={{margin:0}}>weekend: {restaurant.weekend}</p>
                     <p style={{fontWeight: "bold", marginTop: 5}}> Address: {restaurant.address}</p>
                 </div>
-    		</info>
+    		</article>
         </Link>
 		<hr style={{border: "1px solid rgba(0,0,0,0.4)", width:"100%", padding:0}}/>
 	</li>

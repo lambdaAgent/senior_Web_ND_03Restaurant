@@ -122,7 +122,7 @@ const RestaurantDetail_D = (props) => {
 					style={{marginTop: 5}}>{R.name}</h1>
 			</div>
 			<div className="card-block" style={{marginTop: 10, paddingLeft: 10}}>
-				<h1 tabIndex="-1">{R.name}</h1>
+				<h2 tabIndex="-1">{R.name}</h2>
 				
 			  	<Star className="starRating_VD"
 			  	      ratings={R.ratings} />
@@ -165,8 +165,9 @@ const RestaurantDetail_M = (props) => {
 			  	      ratings={R.ratings} />
 	           	<span className="label" style={{fontSize:13, backgroundColor:"black"}}>{R.category}</span>
 			  	<p style={{marginBottom:0}}><label>Open:</label></p>
-			    <span className="card-text" style={{marginBottom:0}}>weekday: {R.weekday}</span>
-			    <span className="card-text" style={{marginBottom:0}}>weekend: {R.weekend}</span>
+			    <p className="card-text" style={{marginBottom:0}}>weekday: {R.weekday}</p>
+			    <p className="card-text" style={{marginBottom:0}}>weekend: {R.weekend}</p>
+   			    <p className="card-text" style={{marginBottom:0}}>address: {R.address}</p>
 			  </div>
 			  <hr style={{border: "1px solid rgba(0,0,0,0.2"}} />
 			  <label aria-label="latestReviews" style={{marginLeft: 10}}>latest Reviews: </label>

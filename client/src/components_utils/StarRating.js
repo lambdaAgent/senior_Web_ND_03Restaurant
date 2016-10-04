@@ -27,6 +27,7 @@ class StarRating extends React.Component {
 			                mouseLeave={this.blur.bind(this)}
 			                hover={this.hover.bind(this)}
 			                click={this.click.bind(this)}
+			                React={this}
 			       />
 		})
 		return(
@@ -46,18 +47,22 @@ class StarRating extends React.Component {
 const OneStar = (props) => {
 	return(
   		<span className={"starRating_sys glyphicon glyphicon-star " + props.className }
-		      tabIndex="0" id={"starSelected" + props.value}
+		      tabIndex={props.value === 1 ? "0": "-1"}
+		      id={"starSelected" + props.value}
 		      onMouseLeave={props.mouseLeave}
 		      onBlur={props.mouseLeave}
 		      onClick={() => props.click(props.value)}
 		      onKeyDown={(e) => {
-		      	console.log(e.keyCode)
 		      	if(e.keyCode === 13 || e.keyCode === 32) {
 		      		props.click(props.value);
 			      	//trigger off focus and change tabIndex = -1
 			      	$("[id^='starSelected']").attr("tabindex", -1);
-			      	
-			      }
+			    }
+			    var rating_value = props.React.state.redStar;
+			    if(e.keyCode === 39 && rating_value < 5){
+			    	props.React.setState({redStar: rating_value + 1})
+			    } else if(e.keyCode === 37 && rating_value > 1){
+			        props.React.setState({redStar: rating_value - 1})			    }
  		      }}
 		      onMouseOver={() => props.hover(props.value)}
 		      onFocus={() => props.hover(props.value)}

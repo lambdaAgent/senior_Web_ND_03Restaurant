@@ -32,9 +32,9 @@ class Review extends React.Component {
                         </div>
                         <div style={{float:"right"}}>
                             <span style={{top: 0}}>ratings: </span>
-                            <h1 tabIndex="-1" 
+                            <p tabIndex="-1" 
                                 className="text-center" 
-                                style={{margin:0}}>{props.ratings}</h1>
+                                style={{margin:0, fontSize:30}}>{props.ratings}</p>
                         </div>
                     </div>
         			<p>{props.coments}</p>
