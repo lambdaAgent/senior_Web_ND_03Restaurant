@@ -1,5 +1,5 @@
 import React  from "react";
-
+import $ from "jquery"
 
 class StarRating extends React.Component {
 	constructor(props){
@@ -30,8 +30,8 @@ class StarRating extends React.Component {
 			       />
 		})
 		return(
-			<div className="star-rating">
-			  <div className="star-rating__wrap" role="select Rating">
+			<div className="star-rating" aria-label="selectRating">
+			  <div className="star-rating__wrap" >
 			    {stars}
 		    	<input id="rating_value" 
 		    	       value={this.state.selected} 
@@ -46,10 +46,21 @@ class StarRating extends React.Component {
 const OneStar = (props) => {
 	return(
   		<span className={"starRating_sys glyphicon glyphicon-star " + props.className }
-		      htmlFor="star-rating-5" 
+		      tabIndex="0" id={"starSelected" + props.value}
 		      onMouseLeave={props.mouseLeave}
+		      onBlur={props.mouseLeave}
 		      onClick={() => props.click(props.value)}
+		      onKeyDown={(e) => {
+		      	console.log(e.keyCode)
+		      	if(e.keyCode === 13 || e.keyCode === 32) {
+		      		props.click(props.value);
+			      	//trigger off focus and change tabIndex = -1
+			      	$("[id^='starSelected']").attr("tabindex", -1);
+			      	
+			      }
+ 		      }}
 		      onMouseOver={() => props.hover(props.value)}
+		      onFocus={() => props.hover(props.value)}
 		      aria-label={props.value + " out of 5 stars"}></span>
 	)
 }

@@ -12,7 +12,7 @@ class Review extends React.Component {
     render() {
     	const props = this.props.review
         return (
-        	<li className="row" role="Review" style={comment_mobile}>
+        	<li className="row" style={comment_mobile}>
     			<img src={props.image} 
     			     alt={props.first_name + " " + props.last_name}
     			     style={imageMedia} />
@@ -20,24 +20,24 @@ class Review extends React.Component {
                     <div className="row" style={{margin:0}}>
                         <div style={{float: "left"}}> 
                 			<h4 style={{marginBottom: "0px"}}
-                				aria-label="username"
+                                tabIndex="-1"
                 			    > {props.first_name + " " + props.last_name}
                 			</h4>
                 			<span className="card-subtitle text-muted"
-                				  role="userEmail"
                 			      > {props.email} 
                 			</span>
                 			<p className="text-muted" style={{fontSize: "12px"}}
-                			   role="timeReviewed"
                 			   > {moment(props.commentedAt).format("YYYY-MM-DD h:mm a")}
                 			</p>
                         </div>
                         <div style={{float:"right"}}>
                             <span style={{top: 0}}>ratings: </span>
-                            <h1 className="text-center" style={{margin:0}}>{props.ratings}</h1>
+                            <h1 tabIndex="-1" 
+                                className="text-center" 
+                                style={{margin:0}}>{props.ratings}</h1>
                         </div>
                     </div>
-        			<p role="review">{props.coments}</p>
+        			<p>{props.coments}</p>
         		</comment>
         		<hr style={{border: "1px solid rgba(0,0,0,0.4)", width:"100%", padding:0}}/>
         	</li>

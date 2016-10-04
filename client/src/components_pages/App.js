@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SimpleDB from "../../../database/simpleDB"
+import SimpleDB from "../database/simpleDB.js"
 
 import {Link} from "react-router";
 import Navbar from "../components_utils/Navbar";
@@ -10,7 +10,15 @@ import RestaurantList from "../components_utils/RestaurantList";
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {restaurants: SimpleDB.init()._restaurants, showHamburger: false }
+    this.state = {restaurants: SimpleDB.init()._restaurants, showHamburger: false, width:0 }
+  }
+  updateDimensions(){
+    var  width = window.innerWidth;
+    this.setState({width: width})
+  }
+  componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions.bind(this));
+    this.updateDimensions.call(this)
   }
   _filterByAlphabets(name){
     const filteredRestaurants = filterByAlphabets(name, SimpleDB.init()._restaurants)
@@ -41,7 +49,7 @@ class App extends Component {
   }
   render() {
     const self = this;
-    const Restaurants__loop = this.state.restaurants.map(r =>  <RestaurantList key={r.id} restaurant={r}/> )
+    const Restaurants__loop = this.state.restaurants.map(r =>  <RestaurantList key={r.id} restaurant={r} width={this.state.width}/> )
 
     return (
       <div className="container" style={{paddingLeft:0}}>
@@ -80,26 +88,29 @@ class App extends Component {
           <dropdown style={{display: this.state.showHamburger ? "inherit" : "none", width: "110%",
                             position: "fixed", top:50, zIndex:90}}
                             className="navbar-inverse navbar-nav">
-              <div className="navbar-collapse" id="Hamburger-Menu"  role="dropdownMenu" 
+              <div className="navbar-collapse" id="Hamburger-Menu" 
                    aria-label="dropdownMenu"
                    style={Object.assign({}, {marginTop: 0})}>
                 <ul className="nav navbar-nav container" style={{listStyleType: "none", color: "White", fontSize: 20}}>
                   <li style={{marginBottom: 10}}><Link to="/signup">Signup</Link></li>
                   <li > 
-                      <label htmlFor="sort" style={{marginLeft: 15, fontWeight: "normal"}}>sort By:</label>
-                      <select name="sort" id="sort" 
+                      <label htmlFor="sort" id="sortLabel"style={{marginLeft: 15, fontWeight: "normal"}}>sort By:</label>
+                      <select name="sort" 
+                              aria-label="sort restaurants"
+                              role="button"
                               defaultValue="none" 
                               style={{marginLeft: 38}}
                               onChange={this._sortBy.bind(this)}>
-                        <option value="none">none</option> 
-                        <option value="name">name</option> 
-                        <option value="ratings">ratings</option> 
+                        <option role="option" value="none">none</option> 
+                        <option role="option" value="name">name</option> 
+                        <option role="option" value="ratings">ratings</option> 
                       </select>                      
                   </li>
                   <li>
                      <label htmlFor="category" style={{marginLeft: 15, fontWeight: "normal"}}>Category: </label>
-                      <select name="category" id="category" 
+                      <select name="category" 
                               defaultValue="none" 
+                              aria-label="category restaurants"
                               style={{marginLeft: 20}}
                               onChange={this._filterByCategory.bind(this)}>
                         <option value="none">None</option> 
@@ -134,14 +145,18 @@ const SortAndFilter = (props) => {
   return(
       <div className="row" style={{marginLeft: 5, marginTop: 10}}>
           <label htmlFor="sort">sort By:</label>
-          <select name="sort" id="sort" defaultValue="none" onChange={props.sortBy} aria-labelledBy="sort">
+          <select name="sort" id="sort" 
+                  aria-label="sort restaurants"
+                  defaultValue="none" onChange={props.sortBy} aria-labelledBy="sort">
             <option value="none">none</option> 
             <option value="name">name</option> 
             <option value="ratings">ratings</option> 
           </select>
           &nbsp;
           <label htmlFor="category">Category: </label>
-          <select name="category" id="category" defaultValue="none" onChange={props.filterBy} aria-labelledBy="category">
+          <select name="category" id="category" 
+                  aria-label="category restaurants"
+                  defaultValue="none" onChange={props.filterBy} aria-labelledBy="category">
             <option value="none">None</option> 
             <option value="Restaurant">Restaurant</option> 
             <option value="Hawker">Hawker</option> 

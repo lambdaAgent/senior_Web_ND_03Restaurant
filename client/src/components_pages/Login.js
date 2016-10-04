@@ -1,6 +1,6 @@
 import React from 'react';
 import { Validation } from "../helper/helper.js";
-import SimpleLogin  from "../../../database/simpleClientAuth";
+import SimpleLogin  from "../database/simpleClientAuth";
 const $ = require("jquery");
 import {FlashDB, FlashMessage} from "../components_utils/FlashMessage";
 

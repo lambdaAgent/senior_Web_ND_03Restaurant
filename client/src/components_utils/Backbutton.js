@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {browserHistory} from "react-router";
 /*
 	name: Back button
 	function: click to previous page
@@ -11,9 +11,15 @@ import React from 'react';
 
 const BackButton = (props) => (
 	<button className="btn btn-primary" 
-			role="backButton"
 	        style={Object.assign({}, {marginBottom: 40 }, props.style)  }
-	        onClick={ () => window.history.back() }>{"< Back"}</button>
+	        onClick={ () => browserHistory.goBack() }
+	        onKeyDown={(e) => {
+	        	if(e.keyCode === 13 || e.keyCode ===32){
+	        		browserHistory.goBack()
+	        	}
+	        }}
+	        >{"< Back"}
+	        </button>
 )
 
 export default BackButton;

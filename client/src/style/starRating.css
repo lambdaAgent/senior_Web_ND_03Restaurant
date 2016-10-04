@@ -1,10 +1,10 @@
 .starRating_sys{
     cursor: pointer;
     font-size: 50px;
-    
+    color:rgba(0,0,0,0.5);
 }
 .red{
-    color: red;
+    color: black;
 }
 .card_image_overlay_VD{
     width: 100%;
@@ -22,18 +22,19 @@
     padding: 0;
     font-size: 90px;
     margin-right: 5px;
-    color: red !important;
+    color: black !important;
     float: right;
     padding-left: 2px;
     color: #FFB300;
 }
 
 .ratingNumber_VD{
-    font-size: 23px !important; 
+    background-color: black;
+    font-size: 25px !important; 
     font-weight: bold !important;
     position: absolute !important;
     left:29px !important;
-    top:27px !important;
+    top:29px !important;
     color: white;
 }
 

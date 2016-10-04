@@ -1,7 +1,7 @@
 // library
 import React from 'react';
-import SimpleLogin from "../../../database/simpleClientAuth";
-import DB from "../../../database/simpleDB.js";
+import SimpleLogin from "../database/simpleClientAuth";
+import DB from "../database/simpleDB.js";
 import {FlashMessage, FlashDB} from "../components_utils/FlashMessage";
 const $ = require("jquery");
 
@@ -13,6 +13,7 @@ import Star from "../components_utils/Star";
 import Review from "../components_utils/Review";
 import StarRating from "../components_utils/StarRating"
 import Backbutton from "../components_utils/Backbutton"
+import FormGroup from "../components_utils/FormGroup"
 
 class RestaurantDetail extends React.Component {
     constructor(props) {
@@ -28,12 +29,14 @@ class RestaurantDetail extends React.Component {
 	
 	submit_if_login(e){
 		e.preventDefault();
-		var reviewText = $("#review")[0].value;
+		var commentText = $("#comments")[0].value;
 		var ratings = $("#rating_value")[0].value;
-
-		if(reviewText === ""){
+		var username = $("#username")[0].value;
+		$("#addReviewForm").attr("aria-invalid", "true")
+		if(commentText === ""){
 			$("#help-review").html("please fill the review")
-			return $("#help-review").css({visibility: "visible"})
+			$("#help-review").css({visibility: "visible"})
+			return $("#help-review").focus();
 		} else {
 			$("#help-review").html("")
 			$("#help-review").css({visibility: "hidden"})
@@ -46,15 +49,14 @@ class RestaurantDetail extends React.Component {
 			$("#help-review").css({visibility: "hidden"})
 
 		}
+		
 
-		if(!SimpleLogin.isAuthenticated()){
-			FlashDB.addAlert("you need to login first")
-			return undefined;
-		}
-
-		var reviewText = $("#review")[0].value;
-		var user = SimpleLogin.get();
-		user.coments = reviewText;
+		var user = {};
+		user.id="1234"
+		user.first_name = username.indexOf(" ") > 0 ? username.split(" ")[0] : username
+		user.last_name = username.indexOf(" ") > 0 ? username.split(" ")[1] : ""
+		user.image="https://robohash.org/quicumquefacilis.jpg?size=50x50&set=set1"
+		user.coments = commentText;
 		user.ratings = ratings;
 		user.commentedAt = Date.parse(new Date());
 		DB.addReview(this.props.params.restaurantId, user)
@@ -65,19 +67,20 @@ class RestaurantDetail extends React.Component {
         return(
         	<div>
         	    {/*desktop only*/}
-        		<mainDesktop className="container desktop">
+
+        		<main className="container desktop">
         			<Navbar />
-	        		<div style={{maxWidth: 800, margin:"0 auto", marginTop:-50}}>
+	        		<div style={{maxWidth: 800, margin:"0 auto", marginTop:20}}>
 	        			<Backbutton />
 	        			<RestaurantDetail_D
 	        				submit_if_login={this.submit_if_login}
 	        				restaurant={restaurant}
 	        			/>
 	        		</div>
-        		</mainDesktop>
+        		</main>
 
         	    {/*mobile only*/}
-        		<mainMobile className="container mobile" >
+        		<main className="container mobile" >
 	        		<Navbar showBackButton={true}
 	        				RBSymbol={<i className="glyphicon glyphicon-edit"></i>}
 	        				RBAria={"add Review"}
@@ -86,13 +89,13 @@ class RestaurantDetail extends React.Component {
         			<div style={{position: "relative", 
         			     maxWidth: 480, border: "1px solid black",
         			     borderBottomRightRadius: 10,borderBottomLeftRadius: 10,
-        			     margin: "0 auto"}}
+        			     margin: "50px auto"}}
         			     >
 	        			<RestaurantDetail_M 
 	        				restaurant={restaurant}
 	        			/>
         			</div>
-        		</mainMobile>
+        		</main>
 
         		<FlashMessage />
         	</div>
@@ -109,29 +112,33 @@ export default RestaurantDetail;
 
 const RestaurantDetail_D = (props) => {
 	const R = props.restaurant;
-	console.log("func", props.submit_if_login)
 	return(
 		<div style={{position: "relative"}}>
 
 			<img src={R.image} alt={R.name} style={{width: "100%"}}/>
 			<div className="card_image_overlay_VD" >
-				<h2 aria-label="restaurantName" className="card-title" style={{marginTop: 5}}>{R.name}</h2>
+				<h1 tabIndex="-1" 
+					className="card-title" 
+					style={{marginTop: 5}}>{R.name}</h1>
 			</div>
 			<div className="card-block" style={{marginTop: 10, paddingLeft: 10}}>
-				<h2 aria-label="restaurantName">{R.name}</h2>
+				<h1 tabIndex="-1">{R.name}</h1>
 				
 			  	<Star className="starRating_VD"
 			  	      ratings={R.ratings} />
-	           	<span className="label label-danger" style={{fontSize:13}}>{R.category}</span>
-			  	<p style={{marginBottom:0}}><label aria-label="open">Open:</label></p>
-			    <p className="card-text" aria-label="weekday" style={{marginBottom:0}}>weekday: {R.weekday}</p>
-			    <p className="card-text" aria-label="weekend" style={{marginBottom:0}}>weekend: {R.weekend}</p>
+	           	<span className="label" style={{fontSize:13, backgroundColor:"black"}}>{R.category}</span>
+			  	<p style={{marginBottom:0}}><label >Open:</label></p>
+			    <p className="card-text" style={{marginBottom:0}}>weekday: {R.weekday}</p>
+			    <p className="card-text" style={{marginBottom:0}}>weekend: {R.weekend}</p>
+			    <br /> 
+			  	<p style={{marginBottom:0}}><label >Address:</label></p>
+			  	<p className="card-text" style={{marginBottom:0}}>{R.address}</p>
 			</div>
 			<hr style={{border: "1px solid rgba(0,0,0,0.2"}} />
 
     		<AddReviewForm submit_if_login={props.submit_if_login} />
     		<br />
-			<label aria-label="latestReviews" style={{marginLeft: 10}}>latest Reviews: </label>
+			<label style={{marginLeft: 10}}>Reviews: </label>
 			  
 			{ R.comments.sort((a,b) => b.commentedAt - a.commentedAt)
 				        .map(u =>  <Review key={u.id} review={u}/>)}
@@ -145,8 +152,7 @@ const RestaurantDetail_D = (props) => {
 const RestaurantDetail_M = (props) => {
 	const R = props.restaurant;
 	return(
-		<div role="restaurantDetail" 
-		        className="card card-inverse">
+		<div className="card card-inverse">
 			  <div className="card_image_overlay_VD" >
 					<h2 aria-label="restaurantName" className="card-title" style={{marginTop: 5}}>{R.name}</h2>
 			  </div>
@@ -157,10 +163,10 @@ const RestaurantDetail_M = (props) => {
 			  <div className="card-block" style={{marginTop: 10, paddingLeft: 10}}>
 			  	<Star className="starRating_VD"
 			  	      ratings={R.ratings} />
-	           	<span className="label label-danger" style={{fontSize:13}} aria-label="category">{R.category}</span>
-			  	<p style={{marginBottom:0}}><label aria-label="open">Open:</label></p>
-			    <p className="card-text" aria-label="weekday" style={{marginBottom:0}}>weekday: {R.weekday}</p>
-			    <p className="card-text" aria-label="weekend" style={{marginBottom:0}}>weekend: {R.weekend}</p>
+	           	<span className="label" style={{fontSize:13, backgroundColor:"black"}}>{R.category}</span>
+			  	<p style={{marginBottom:0}}><label>Open:</label></p>
+			    <span className="card-text" style={{marginBottom:0}}>weekday: {R.weekday}</span>
+			    <span className="card-text" style={{marginBottom:0}}>weekend: {R.weekend}</span>
 			  </div>
 			  <hr style={{border: "1px solid rgba(0,0,0,0.2"}} />
 			  <label aria-label="latestReviews" style={{marginLeft: 10}}>latest Reviews: </label>
@@ -199,18 +205,30 @@ const ReviewList = (props) => {
 
 const AddReviewForm = props => {
 	return(
-		<form onSubmit="" name="addReview" style={{position: "relative"}}>
-			<p><label htmlFor="review" aria-label="review">Ratings: </label></p>
-			<StarRating />
-			<textarea id="review" name="review" 
+		<form name="addReview" style={{position: "relative"}} id="addReviewForm" aria-invalid="true">
+			<p><label htmlFor="ratings" aria-label="ratings" onClick={(e) => {
+				$("#starSelected1").focus();
+			}}>Ratings: </label></p>
+			<StarRating name="ratings"/>
+			<FormGroup label="username" name="username" id="username" />
+			<p><label htmlFor="comments">Comments: </label></p>
+			<textarea name="comments" id="comments"
 			          style={{width: "100%"}} 
 			          rows={8} aria-label="add comments"
 			          placeholder="add comments"></textarea>
 			<span tabIndex="0"
-				style={submitButtonStyle} role="submit comment and ratings"
-				onClick={props.submit_if_login }>submit</span>
-			<span id={"help-review"} className="help-block"  role="alert"
-	             style={{color:"red", visibility: "hidden"}}>please fill the review
+				style={submitButtonStyle} 
+				aria-label="submit button"
+				onClick={props.submit_if_login}
+				onKeyDown={(e) => {
+					if(e.keyCode === 13 || e.keyCode === 32){
+						props.submit_if_login(e)
+					}
+				}}>submit</span>
+			<span id={"help-review"} 
+			      className="help-block"  
+			      role="alert"
+	              style={{color:"red", visibility: "hidden"}}>please fill the review
 	        </span>
 			
 			
@@ -225,7 +243,7 @@ const submitButtonStyle = {
 	cursor:"pointer", 
 	position: "absolute",
 	display:"block",
-	color:"#4C9DD6", 
+	color:"blue", 
 	fontSize:20,
 	float: "right"
 };

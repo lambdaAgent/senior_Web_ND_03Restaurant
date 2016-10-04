@@ -1,6 +1,6 @@
 import React from 'react';
 const $ = require("jquery");
-import SimpleLogin from "../../../database/simpleClientAuth";
+import SimpleLogin from "../database/simpleClientAuth";
 
 import { Link , browserHistory} from 'react-router';
 import Signup from "./SignUpButton";
@@ -21,36 +21,36 @@ class Navbar extends React.Component {
 				{ (!showBackButton) /*cannot use if, use ternary instead*/
                     
                     ? /*show bellow if backButton is OFF*/
-                        <div className="container">
+           <div className="container">
 
-                            {/* MOBILE ONLY*/}
-                            <div className="mobile"> 
-            					<div className="navbar-header" style={{marginRight: 8}}>
-            						<Link to="/" className="navbar-brand" 
-                                          aria-label={aria_home}>
-                                          {brand}
-                                    </Link>
-                                    <ul className="nav navbar-nav" style={{float: "right"}}>
-                                        <li><Signup /> </li>
-                                    </ul>
-            					</div>
-                            </div>
+                {/* MOBILE ONLY*/}
+                <div className="mobile"> 
+          					<div className="navbar-header" style={{marginRight: 8}}>
+          						<Link to="/" className="navbar-brand" 
+                                    aria-label={aria_home}>
+                                    {brand}
+                      </Link>
+                      <ul className="nav navbar-nav" style={{float: "right"}}>
+                          <li><Signup /> </li>
+                      </ul>
+                		</div>
+                </div>
 
         					{/* DESKTOP ONLY*/}
-                            <div className="desktop">
-                                <div className="navbar-header">
-                                    <Link to="/" 
-                                          className="navbar-brand"
-                                          aria-label={aria_home}
-                                          >{brand}</Link>
-                                </div> 
-            					<div className="navbar-collapes" >
+                <div className="desktop">
+                    <div className="navbar-header">
+                        <Link to="/" 
+                              className="navbar-brand"
+                              aria-label={aria_home}
+                              >{brand}</Link>
+                    </div> 
+            				<div className="navbar-collapes" >
             						<ul className="nav navbar-nav navbar-right">
             							<li><Signup /> </li>
             						</ul>
-            					</div>
-                            </div>
-                        </div>
+            				</div>
+                </div>
+              </div>
                     
                     : /*show below only if back button is ON*/ 
                         <TwoFunctionHeader 
@@ -73,12 +73,10 @@ export default Navbar;
 
 
 const TwoFunctionHeader = (props) => {
-  console.log(props.RBSymbol)
     return(
         <div className="navbar-header" style={{width: "100%"}}>
                 <Link className="navbar-brand" 
                   style={{cursor: "pointer"}}
-                  role="back to previous page"
                   tabIndex={0}
                   onClick={ browserHistory.goBack }> {"< Back"}</Link>
                 <ul className="navbar-brand" style={{float: "right", paddingTop:12, cursor:"pointer"}}>
@@ -94,7 +92,8 @@ const TwoFunctionHeader = (props) => {
 
 
 const Hamburger = (props) => (
-      <button type="button" className="navbar-toggle collapsed" aria-expanded="false" aria-label="toggleMenu"
+      <button type="button" className="navbar-toggle collapsed" 
+              aria-expanded="false" aria-label="toggle menu"
               onClick={props.onClick}>
         <span className="sr-only">Toggle navigation</span>
         <span className="icon-bar"></span>

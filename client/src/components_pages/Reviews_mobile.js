@@ -3,7 +3,7 @@
 /* Library */
 import React, { Component } from 'react';
 import {Link, browserHistory} from "react-router";
-import DB from "../../../database/simpleDB.js";
+import DB from "../database/simpleDB.js";
 
 
 /* Components_utils */
@@ -29,15 +29,14 @@ class App extends Component {
     return (
       <div className="">
         <Navbar />
-        <h1 className="desktop">this page will only show at mobile screen</h1>
 
 
-        <main className="mobile reviews-mobile" style={{margin: "0 auto"}}>
+        <main className="" style={{margin: "0 auto"}}>
          <Navbar showBackButton={true}
                 RBSymbol={<i className="glyphicon glyphicon-edit"></i>}
                 RBAria={"add Review"}
                 RBAction={this.addReview.bind(this) }/>
-          <ul className="reviewList" role="reviewlist" style={{marginTop: 42}}>
+          <ul className="reviewList" style={{marginTop: 70}}>
             {reviewers}
           </ul>
         </main>

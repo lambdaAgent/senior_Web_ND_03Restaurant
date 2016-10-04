@@ -10,25 +10,24 @@ class SearchBar extends React.Component {
         }
     }
     _handleKeyPress(e){
-    	console.log("pressed", e)
     	if(e.keyPress === 13){
     		this.setState({showOptions: false})
     		return this.props.onEnterPress(e.target.value)
     	} 
     }
     _change(word){
-    	console.log("change", word)
     	this.props.onChange(word)
     }
     _input(e){
-    	console.log("input",e.target)
+
     }
     render() {
     	const options = this.state.options.map((o,idx) => <option key={idx} value={o}/>)
         return(
         	<div>
         		<input 
-        		   name="searchbar" aria-labelledBy={this.props["aria-labelledBy"]} id="searchbar" role="search"
+        		   name="searchbar" aria-labelledBy={this.props["aria-labelledBy"]} 
+                   id="searchbar" role="search"
         		   placeholder="type to search" 
         		   list="searchs" style={this.props.style}
         		   onChange={ e =>	this._change.call(this, e.target.value)}

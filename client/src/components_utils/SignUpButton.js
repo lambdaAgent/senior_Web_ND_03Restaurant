@@ -1,6 +1,6 @@
 import React from "react"
 import { Link,browserHistory } from 'react-router';
-import SimpleLogin from "../../../database/simpleClientAuth";
+import SimpleLogin from "../database/simpleClientAuth";
 
 
         
