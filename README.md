@@ -2,7 +2,7 @@
 Built an accessible web application containing restaurant information and customer reviews. Stack used are react, react-router
 
 
-<img src=""/>
+<img src="https://github.com/vdj4y/senior_Web_ND_03Restaurant/blob/master/restaurant.png"/>
 
 ### RUN:
 1. `git clone`
