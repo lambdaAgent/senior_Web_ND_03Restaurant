@@ -12,7 +12,7 @@ import React from "react";
 */
 
 const FloatingButton = (props) => {
-	const content = props.content || <span className="glyphicon glyphicon-plus" style={glyphicon}></span>
+	const content = props.content || <span className="glyphicon glyphicon-cog" style={glyphicon}></span>
 	return(
 		<button 
 		    onClick={props.onClick}
@@ -23,13 +23,14 @@ const FloatingButton = (props) => {
 		</button>
 	)
 };
+
 const defaultStyle = {
 	borderRadius: 200, width:50, height:50,
 	color:"white", padding: 0, paddingLeft:4,
 	backgroundColor: "#F44336",
 	boxShadow: "3px 3px 4px 1px rgba(0,0,0,0.5)",
 	position: "fixed",
-	bottom: "30px", right: "15px",
+	bottom: 30, right: 15,
 	zIndex: 1000
 }
 
