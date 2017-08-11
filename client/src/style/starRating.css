@@ -4,7 +4,7 @@
     color:rgba(0,0,0,0.5);
 }
 .red{
-    color: black;
+    color: red;
 }
 .card_image_overlay_VD{
     width: 100%;
@@ -22,14 +22,13 @@
     padding: 0;
     font-size: 90px;
     margin-right: 5px;
-    color: black !important;
     float: right;
     padding-left: 2px;
-    color: #FFB300;
+    color: red;
 }
 
 .ratingNumber_VD{
-    background-color: black;
+    background-color: red;
     font-size: 25px !important; 
     font-weight: bold !important;
     position: absolute !important;
@@ -54,7 +53,7 @@
     float: right;
     padding-left: 2px;
     cursor: pointer;
-    color: #FFB300;
+    color: red;
 }
 .star-rating__ico:last-child{
     padding-left: 0;

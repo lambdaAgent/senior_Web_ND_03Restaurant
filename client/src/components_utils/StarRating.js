@@ -58,7 +58,7 @@ const OneStar = (props) => {
 			      	//trigger off focus and change tabIndex = -1
 			      	$("[id^='starSelected']").attr("tabindex", -1);
 			    }
-			    var rating_value = props.React.state.redStar;
+			    var rating_value = props.React.state.Star;
 			    if(e.keyCode === 39 && rating_value < 5){
 			    	props.React.setState({redStar: rating_value + 1})
 			    } else if(e.keyCode === 37 && rating_value > 1){

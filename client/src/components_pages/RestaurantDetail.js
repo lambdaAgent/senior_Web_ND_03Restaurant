@@ -1,6 +1,7 @@
 // library
 import React from 'react';
 import SimpleLogin from "../database/simpleClientAuth";
+import ReactDom from 'react-dom';
 import DB from "../database/simpleDB.js";
 import {FlashMessage, FlashDB} from "../components_utils/FlashMessage";
 const $ = require("jquery");
@@ -16,16 +17,20 @@ import Backbutton from "../components_utils/Backbutton"
 import FormGroup from "../components_utils/FormGroup"
 
 class RestaurantDetail extends React.Component {
-    constructor(props) {
-        super(props);
-        this.displayName = 'RestaurantDetail';
-        this.submit_if_login = this.submit_if_login.bind(this);
-        this.state = {restaurant: DB.getRestaurantById(this.props.params.restaurantId)}        
-    }
-    addReview(e){
-    	e.preventDefault();
-    	browserHistory.push("/addReview/" + this.props.params.restaurantId)
-    }
+  constructor(props) {
+      super(props);
+      this.displayName = 'RestaurantDetail';
+      this.submit_if_login = this.submit_if_login.bind(this);
+      this.state = {restaurant: DB.getRestaurantById(this.props.params.restaurantId)}        
+  }
+  addReview(e){
+  	e.preventDefault();
+  	browserHistory.push("/addReview/" + this.props.params.restaurantId)
+  }
+
+  componentDidMount() {
+  	ReactDom.findDOMNode(this).scrollIntoView();
+  }
 	
 	submit_if_login(e){
 		e.preventDefault();
