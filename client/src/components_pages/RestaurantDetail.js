@@ -30,29 +30,31 @@ class RestaurantDetail extends React.Component {
 
   componentDidMount() {
   	ReactDom.findDOMNode(this).scrollIntoView();
+  	console.log('did mount', this);
   }
 	
 	submit_if_login(e){
 		e.preventDefault();
-		var commentText = $("#comments")[0].value;
-		var ratings = $("#rating_value")[0].value;
-		var username = $("#username")[0].value;
-		$("#addReviewForm").attr("aria-invalid", "true")
+		var commentText = document.getElementById("comments").value;
+		var ratings = document.getElementById("rating_value").value;
+		var username = document.getElementById("username").value;
+		const addReviewForm = document.getElementById("addReviewForm");
+		const helpReview = document.getElementById("help-review")
+		addReviewForm.setAttribute('aria-invalid', 'true')
 		if(commentText === ""){
-			$("#help-review").html("please fill the review")
-			$("#help-review").css({visibility: "visible"})
-			return $("#help-review").focus();
+			helpReview.innerHTML = "please fill the review";
+			helpReview.style.visibility = "visible";
+			return helpReview.focus();
 		} else {
-			$("#help-review").html("")
-			$("#help-review").css({visibility: "hidden"})
+			helpReview.innerHTML = "";
+			helpReview.style.visibility = "hidden";
 		}
 		if( ratings === 0 || !ratings){
-			$("#help-review").html("please rate this restaurant")
-			return $("#help-review").css({visibility: "visible"})
+			helpReview.innerHTML = "please rate this restaurant";
+			return helpReview.style.visibility = "visible";
 		} else {
-			$("#help-review").html("")
-			$("#help-review").css({visibility: "hidden"})
-
+			helpReview.innerHTML = "";
+			helpReview.style.visibility = "hidden";
 		}
 		
 
@@ -146,7 +148,7 @@ const RestaurantDetail_D = (props) => {
 			<label style={{marginLeft: 10}}>Reviews: </label>
 			  
 			{ R.comments.sort((a,b) => b.commentedAt - a.commentedAt)
-				        .map(u =>  <Review key={u.id} review={u}/>)}
+				        .map((u, index) =>  <Review key={u.id+index} review={u}/>)}
 		</div>
 	)
 }
@@ -209,37 +211,47 @@ const ReviewList = (props) => {
 	)
 }
 
-const AddReviewForm = props => {
-	return(
-		<form name="addReview" style={{position: "relative"}} id="addReviewForm" aria-invalid="true">
-			<p><label htmlFor="ratings" aria-label="ratings" onClick={(e) => {
-				$("#starSelected1").focus();
-			}}>Ratings: </label></p>
-			<StarRating name="ratings"/>
-			<FormGroup label="username" name="username" id="username" />
-			<p><label htmlFor="comments">Comments: </label></p>
-			<textarea name="comments" id="comments"
-			          style={{width: "100%"}} 
-			          rows={8} aria-label="add comments"
-			          placeholder="add comments"></textarea>
-			<span tabIndex="0"
-				style={submitButtonStyle} 
-				aria-label="submit button"
-				onClick={props.submit_if_login}
-				onKeyDown={(e) => {
-					if(e.keyCode === 13 || e.keyCode === 32){
-						props.submit_if_login(e)
-					}
-				}}>submit</span>
-			<span id={"help-review"} 
-			      className="help-block"  
-			      role="alert"
-	              style={{color:"red", visibility: "hidden"}}>please fill the review
-	        </span>
-			
-			
-		</form>
-	)
+class AddReviewForm extends React.Component{
+	static propTypes = {
+
+	};
+	componentDidMount() {
+		console.log('did mount add reviewForm', this);
+	}
+	render(){
+		const props = this.props;
+		return(
+			<form name="addReview" style={{position: "relative"}} id="addReviewForm" aria-invalid="true">
+				<p><label htmlFor="ratings" aria-label="ratings" onClick={(e) => {
+					$("#starSelected1").focus();
+				}}>Ratings: </label></p>
+				<StarRating name="ratings"/>
+				<FormGroup label="username" name="username" id="username" />
+				<p><label htmlFor="comments">Comments: </label></p>
+				<textarea name="comments" id="comments"
+				          style={{width: "100%"}} 
+				          rows={8} aria-label="add comments"
+				          placeholder="add comments"></textarea>
+				<span tabIndex="0"
+					style={submitButtonStyle} 
+					aria-label="submit button"
+					onClick={props.submit_if_login}
+					onKeyDown={(e) => {
+						if(e.keyCode === 13 || e.keyCode === 32){
+							props.submit_if_login(e)
+						}
+					}}>submit</span>
+				<span id={"help-review"} 
+				      ref={'review'}
+				      className="help-block"  
+				      role="alert"
+		              style={{color:"red", visibility: "hidden"}}>please fill the review
+		        </span>
+				
+				
+			</form>
+		)
+    }
 }
 
 

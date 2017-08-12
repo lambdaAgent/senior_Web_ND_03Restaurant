@@ -18,10 +18,9 @@ class Navbar extends React.Component {
         const aria_home = 'link to home';
         return(
         	<nav className="navbar navbar-inverse navbar-fixed-top">
-				{ (!showBackButton) /*cannot use if, use ternary instead*/
-                    
-                    ? /*show bellow if backButton is OFF*/
-           <div className="container">
+    				{ (!showBackButton) /*cannot use if, use ternary instead*/
+               ? /*show bellow if backButton is OFF*/
+               <div className="container">
 
                 {/* MOBILE ONLY*/}
                 <div className="mobile"> 
@@ -51,14 +50,15 @@ class Navbar extends React.Component {
             				</div>
                 </div>
               </div>
-                    
-                    : /*show below only if back button is ON*/ 
-                        <TwoFunctionHeader 
-                           RBSymbol={self.props.RBSymbol}
-                           RBAria={self.props.RBAria}
-                           RBAction={self.props.RBAction}
-                           RBStyle={self.props.RBStyle}/>
-                }
+                        
+              : /*show below only if back button is ON*/ 
+              <TwoFunctionHeader 
+                 RBSymbol={self.props.RBSymbol}
+                 RBAria={self.props.RBAria}
+                 RBAction={self.props.RBAction}
+                 RBStyle={self.props.RBStyle}
+              />
+          }
 			</nav>
         )
     }

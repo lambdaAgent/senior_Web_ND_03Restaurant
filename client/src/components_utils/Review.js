@@ -2,6 +2,10 @@ import React from 'react';
 import moment from "moment";
 import Star from "../components_utils/Star"
 
+const comment_mobile = {width: "100%", listStyleType: "none", position: "relative"}
+const imageMedia = {borderRadius: "30px", float: "left", border:"1px solid rgba(0,0,0,0.3)"};
+const commentPanel = {marginLeft:"10px",width: "80%", maxWidth: "80%", display: "inline-block", marginBottom: "-20px"};
+
 class Review extends React.Component {
 	//can include more functionality in future
     constructor(props) {
@@ -44,10 +48,5 @@ class Review extends React.Component {
         )
     }
 }
-
-const comment_mobile = {width: "100%", listStyleType: "none", position: "relative"}
-const imageMedia = {borderRadius: "30px", float: "left", border:"1px solid rgba(0,0,0,0.3)"};
-const commentPanel = {marginLeft:"10px",width: "80%", maxWidth: "80%", display: "inline-block", marginBottom: "-20px"};
-
 
 export default Review;

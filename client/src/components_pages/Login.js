@@ -11,6 +11,13 @@ import Navbar from "../components_utils/Navbar";
 
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.validateEmpty = this.validateEmpty.bind(this);
+    this.validateEmail = this.validateEmail.bind(this);
+    this.validatePassword = this.validatePassword.bind(this);
+    this.validateRequired = this.validateRequired.bind(this);
+  }
     componentWillUnmount() {
       SimpleLogin.clearFromAddReviewToSignup();     
     }
@@ -101,19 +108,19 @@ class Login extends React.Component {
                                    required={true} 
                                    autocomplete="fname"
                                    autofocus={true}
-                                   offFocus={this.validateEmpty.bind(this)}/>
+                                   offFocus={this.validateEmpty}/>
                         <FormGroup label="lastname"
                                    required={true} 
                                    autocomplete="lname"
-                                   offFocus={this.validateEmpty.bind(this)}/>                                   
+                                   offFocus={this.validateEmpty}/>                                   
                         <FormGroup label="email" type="email"
                                    autocomplete="email"
-                                   offFocus={this.validateEmail.bind(this)}
+                                   offFocus={this.validateEmail}
                                    required={true} />                                   
                         <FormGroup label="password" type="password"
                                    required={true}
                                    autocomplete="password"
-                                   offFocus={this.validatePassword.bind(this)}
+                                   offFocus={this.validatePassword}
                                    pattern="^(?=.*[A-Z])[a-zA-Z0-9]{8,}$"/>
                         <br />
                         <h4>Biography: </h4>
@@ -130,7 +137,7 @@ class Login extends React.Component {
                         {/* Submit Button */}
                         <div className="form-actions">               
                     		  <button id="btnSubmit" className="btn btn-primary btn-large" 
-                                 onClick={this.validateRequired.bind(this)}>Signup</button>
+                                 onClick={this.validateRequired}>Signup</button>
                         </div>
                   </div>
                 	</form>

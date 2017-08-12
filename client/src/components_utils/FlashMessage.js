@@ -1,8 +1,17 @@
 import React from "react";
-const $ = require("jquery");
 
+const defaultStyle = { 
+	backgroundColor: "black", 
+    display: "none",
+    textAlign:"center", 
+    position:"fixed",
+    left:0, 
+    bottom:0, 
+    width:"100%", 
+    margin:"0 auto"
+};
 
-var FlashDB = {
+const FlashDB = {
 	_messages: "",
 	_react: undefined,
 	hasAlert(){
@@ -44,15 +53,23 @@ class FlashMessage extends React.Component {
 	componentWillUpdate(nextProps, nextState) {
 	 if(nextState.show === true){
 	 		document.getElementById("flashMessage").focus();
-		 	var overlay = $("<div></div>");
+		 	let overlay = document.createElement('div')
 		 	overlay.attr("id","flashOverlay");
 		 	overlay.addClass("overlay_VD");
 		 	overlay.html('&nbsp;')
 		 	overlay.click(() => {
 		 		//hide overlay
 		 		//trigger click on alertClose
-		 		$("#flashOverlay").remove();
-		 		$("#flashButton").trigger("click");
+		 		const flashOverlay = document.getElementById('flashOverlay');
+		 		const flashButton = document.getElementById('flashButton');
+		 		// firefox need event click, 
+		 		const clickEvent = new MouseEvent("click", {
+				    "view": window,
+				    "bubbles": true,
+				    "cancelable": false
+				});
+		 		document.body.remove(flashOverlay);
+		 		flashButton.dispatchEvent(clickEvent);
 		 	});
 		 	overlay.appendTo("body")
 	 	}         
@@ -93,9 +110,6 @@ class FlashMessage extends React.Component {
 FlashMessage.props = {
 	alert: React.PropTypes.string.isRequired,
 	show: React.PropTypes.bool
-}
-
-const defaultStyle = {backgroundColor: "black", display: "none",
-				         textAlign:"center", position:"fixed",left:0, bottom:0, width:"100%", margin:"0 auto"}
+};
 
 module.exports = {FlashMessage, FlashDB};

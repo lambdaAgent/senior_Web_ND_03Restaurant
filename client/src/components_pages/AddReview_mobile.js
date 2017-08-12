@@ -4,7 +4,6 @@
 import React from "react";
 import SimpleLogin from "../database/simpleClientAuth";
 import DB from "../database/simpleDB.js"
-import $ from "jquery";
 import Signup from "../components_utils/SignUpButton";
 
 //components
@@ -15,6 +14,15 @@ import StarRating from "../components_utils/StarRating"
 import FormGroup from "../components_utils/FormGroup"
 
 
+const submitButtonStyle = {
+	right: 40, 
+	bottom: 10, 
+	cursor:"pointer", 
+	color: "rgba(0,0,0,0.8)", 
+	fontSize:20, fontWeight: "bold",
+	float: "right",
+};
+
 class AddReviewForm extends React.Component {
 	constructor(props){
 		super(props);
@@ -24,13 +32,13 @@ class AddReviewForm extends React.Component {
 	
 	submit_if_login(e){
 		e.preventDefault();
-		var commentText = $("#comment")[0].value;
-		var ratings = $("#rating_value")[0].value;
-		var username = $("#username")[0].value;
+		var commentText = document.getElementById("comment").value;
+		var ratings = document.getElementById("rating_value").value;
+		var username = document.getElementById("username").value;
 		if(commentText === ""){
-			return $("#help-review").show()
+			return document.getElementById("help-review").style.visibility = 'visible';
 		} else {
-			$("#help-review").hide()
+			document.getElementById("help-review").style.visibility = 'hidden';
 		}
 
 		var user = {};
@@ -84,13 +92,5 @@ class AddReviewForm extends React.Component {
 	}
 };
 
-const submitButtonStyle = {
-	right: 40, 
-	bottom: 10, 
-	cursor:"pointer", 
-	color: "rgba(0,0,0,0.8)", 
-	fontSize:20, fontWeight: "bold",
-	float: "right",
-};
 
 module.exports = AddReviewForm;

@@ -25,14 +25,12 @@ class App extends Component {
     const props= this.props;
     const reviews = this.state.reviews || [];
     const reviewers = reviews.sort((a,b) => b.commentedAt - a.commentedAt)
-                             .map(r => <Review key={r.id} review={r}/> );
+                             .map((r, index) => <Review key={r.id+index} review={r}/> );
     return (
       <div className="">
         <Navbar />
-
-
         <main className="" style={{margin: "0 auto"}}>
-         <Navbar showBackButton={true}
+          <Navbar showBackButton={true}
                 RBSymbol={<i className="glyphicon glyphicon-edit"></i>}
                 RBAria={"add Review"}
                 RBAction={this.addReview.bind(this) }/>
